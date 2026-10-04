@@ -1,0 +1,24 @@
+name: Bug
+description: Report a defect
+title: "[Bug]: "
+labels:
+  - type:bug
+body:
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Actual Behavior
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction Steps
