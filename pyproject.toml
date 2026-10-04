@@ -18,6 +18,7 @@ portfolio-profiler = "portfolio_profiler.cli:main"
 [tool.pytest.ini_options]
 addopts = "-q"
 testpaths = ["tests"]
+pythonpath = ["src"]
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/portfolio_profiler"]
