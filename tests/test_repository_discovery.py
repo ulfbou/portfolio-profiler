@@ -9,6 +9,7 @@ import pytest
 
 from portfolio_profiler.cli import run
 from portfolio_profiler.collectors.repository_discovery import discover_repositories
+from portfolio_profiler.errors import RepositoryInputError
 
 
 def make_repository(path: Path) -> Path:
@@ -53,7 +54,7 @@ def test_discovery_accepts_expanded_string_path(
 
 
 def test_discovery_rejects_missing_root(tmp_path: Path) -> None:
-    with pytest.raises(ValueError, match="not a directory"):
+    with pytest.raises(RepositoryInputError, match="not a directory"):
         discover_repositories(tmp_path / "missing")
 
 
