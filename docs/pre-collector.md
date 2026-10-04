@@ -282,3 +282,6 @@ Examples:
 - technical lead
 
 The Pre-Collector remains role-neutral and evidence-focused.
+
+# Local Git Evidence Contract
+`portfolio-profiler profile REPOSITORY` resolves the repository root and observes local Git state through one non-shell command adapter. It performs no fetch and does not modify the repository. Evidence models are immutable, factual, and explicitly serialized. Root commit identities are sorted, detached HEAD is represented by a null branch and `detachedHead: true`, and unchanged repository state produces identical JSON bytes.

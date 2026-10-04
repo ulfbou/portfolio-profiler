@@ -42,3 +42,10 @@ The Pre-Collector produces repository profiles that can later be consumed by hig
 ## Status
 
 Planned.
+
+## Local Git Profile
+Collect deterministic local Git evidence without network access:
+```bash
+portfolio-profiler profile REPOSITORY
+```
+The versioned JSON profile contains repository identity, current and root commit identities, branch or detached-HEAD state, working-tree cleanliness, tracked-file count, and reachable commit count. Invalid repository input exits with status 2; unavailable Git or collection failure exits with status 3.
