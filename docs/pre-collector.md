@@ -20,11 +20,11 @@ The sole responsibility of the Pre-Collector is to establish objective facts.
 
 ```text
 Repository
-    â†“
+    ↓
 Collectors
-    â†“
+    ↓
 Evidence Model
-    â†“
+    ↓
 Repository Profile
 ```
 
