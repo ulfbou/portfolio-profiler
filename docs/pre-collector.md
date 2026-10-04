@@ -46,7 +46,9 @@ This minimizes API usage and allows repositories to be analyzed offline.
 
 ---
 
-# Evidence Categories
+# Planned Evidence Categories
+
+The following categories describe planned collector scope unless explicitly identified as implemented below. Each collector requires an acceptance-ready issue before implementation.
 
 ## Repository Identity
 
@@ -65,7 +67,7 @@ Collect:
 
 - existence
 - size
-- section count
+- heading count
 - code block count
 
 Detect topics such as:
@@ -93,7 +95,6 @@ Collect:
 
 - file counts
 - document categories
-- documentation density
 
 ---
 
@@ -108,13 +109,7 @@ Detect:
 - target frameworks
 - package management
 
-Particular attention should be given to:
-
-```text
-net10.0
-```
-
-as this represents the most mature project family currently expected within the portfolio.
+Target frameworks are collected as declared facts. Framework maturity is not a collector output.
 
 ### Python
 
@@ -196,7 +191,7 @@ These indicate maturity but are not used to determine repository ranking.
 
 ---
 
-# GitHub Integration
+# Planned GitHub Integration
 
 GitHub metadata is enrichment, not the primary data source.
 
@@ -204,7 +199,7 @@ The collector should remain useful without network access.
 
 ---
 
-# GraphQL Strategy
+# Planned GraphQL Strategy
 
 GraphQL usage must be rate-limit aware.
 
@@ -228,19 +223,11 @@ Examples:
 
 ---
 
-# Outputs
+# Planned Output Evolution
 
-Each repository produces:
+The current CLI emits JSON to standard output. No output filename is currently part of the public contract.
 
-```text
-repo-profile.json
-```
-
-The portfolio produces:
-
-```text
-portfolio-profile.json
-```
+M1 schema consolidation will decide whether output remains streamed JSON or gains an explicit file sink. The names `repo-profile.json` and `portfolio-profile.json` are planned possibilities, not current contracts.
 
 No ranking is performed by the Pre-Collector.
 
@@ -248,7 +235,7 @@ The output represents factual evidence only.
 
 ---
 
-# Future Stages
+## Planned Future Stages
 
 ## Evidence Classification
 
@@ -283,5 +270,11 @@ Examples:
 
 The Pre-Collector remains role-neutral and evidence-focused.
 
-# Local Git Evidence Contract
+## Implemented Repository Discovery Contract
+
+`portfolio-profiler discover ROOT` examines `ROOT` and its direct child directories. It recognizes `.git` as either a file or directory and returns deterministically ordered repository identities.
+
+Repository discovery uses filesystem markers only and may report paths that `profile` later rejects. Discovery is intentionally cheaper than Git validation.
+
+## Implemented Local Git Evidence Contract
 `portfolio-profiler profile REPOSITORY` resolves the repository root and observes local Git state through one non-shell command adapter. It performs no fetch and does not modify the repository. Evidence models are immutable, factual, and explicitly serialized. Root commit identities are sorted, detached HEAD is represented by a null branch and `detachedHead: true`, and unchanged repository state produces identical JSON bytes.

@@ -2,50 +2,52 @@
 
 Portfolio Profiler is a Python-based repository intelligence tool that discovers, profiles, and compares software repositories within a personal portfolio.
 
-Its primary purpose is to collect objective evidence from repositories and transform that evidence into actionable portfolio insights.
+Its first implementation phase is the Pre-Collector, which gathers objective repository evidence for later classification, portfolio analysis, and CV recommendations.
 
-The first implementation phase is the Pre-Collector.
+## Status
 
-## Goals
+Implementation in progress. The current durable baseline is described in `docs/current-state.md`; planned delivery is described in `docs/roadmap.md`.
 
-- Discover repositories and portfolio assets.
-- Collect objective repository evidence.
-- Avoid subjective scoring during collection.
-- Produce structured evidence profiles.
-- Support future CV, portfolio, and interview-oriented analysis.
+## Implemented commands
 
-## Design Principles
+### Discover repositories
+
+```bash
+portfolio-profiler discover ROOT
+```
+
+Discovers Git repository markers at `ROOT` and among its direct child directories. Discovery is a filesystem observation and does not fully validate each marker through Git.
+
+### Profile one repository
+
+```bash
+portfolio-profiler profile REPOSITORY
+```
+
+Resolves and validates the containing local Git repository, then emits repository identity and deterministic local Git evidence as JSON to standard output.
+
+The profile currently includes current and root commit identities, branch or detached-HEAD state, working-tree cleanliness, tracked-file count, and reachable commit count.
+
+Invalid repository input exits with status 2. Git unavailability or Git evidence collection failure exits with status 3.
+
+## Design principles
 
 - Evidence before scoring.
 - Local analysis before API analysis.
 - Deterministic and reproducible collection.
-- Rate-limit-aware GitHub integration.
-- Structured machine-readable outputs.
+- Structured machine-readable output.
+- Collectors gather facts rather than opinions.
+- Classification, ranking, and CV interpretation remain downstream.
 
-## Initial Evidence Areas
+## Planned evidence areas
 
-- Repository metadata
-- Git activity
-- README analysis
-- Documentation analysis
-- .NET solution structure
-- Python project structure
-- Testing assets
-- DevOps assets
-- Governance assets
-- Release readiness signals
+- README evidence;
+- documentation evidence;
+- Python and .NET project structure;
+- testing assets;
+- DevOps assets;
+- governance assets;
+- release-readiness indicators;
+- rate-limit-aware GitHub enrichment.
 
-## Output
-
-The Pre-Collector produces repository profiles that can later be consumed by higher-level portfolio analysis and CV recommendation systems.
-
-## Status
-
-Planned.
-
-## Local Git Profile
-Collect deterministic local Git evidence without network access:
-```bash
-portfolio-profiler profile REPOSITORY
-```
-The versioned JSON profile contains repository identity, current and root commit identities, branch or detached-HEAD state, working-tree cleanliness, tracked-file count, and reachable commit count. Invalid repository input exits with status 2; unavailable Git or collection failure exits with status 3.
+See `docs/roadmap.md` for sequencing and milestone gates.
