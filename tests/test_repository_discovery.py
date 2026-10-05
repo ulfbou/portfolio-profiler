@@ -47,6 +47,7 @@ def test_discovery_accepts_expanded_string_path(
     repositories.mkdir(parents=True)
     make_repository(repositories / "portfolio-profiler")
     monkeypatch.setenv("HOME", str(home))
+    monkeypatch.setenv("USERPROFILE", str(home))
 
     profiles = discover_repositories("~/github")
 

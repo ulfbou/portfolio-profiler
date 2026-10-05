@@ -46,15 +46,19 @@ This minimizes API usage and allows repositories to be analyzed offline.
 
 ---
 
-# Planned Evidence Categories
+# Evidence Categories
 
-The following categories describe planned collector scope unless explicitly identified as implemented below. Each collector requires an acceptance-ready issue before implementation.
+Each category explicitly separates implemented evidence from planned evidence. Planned collectors require an acceptance-ready issue before implementation.
 
 ## Repository Identity
 
-Examples:
+### Implemented
 
 - repository name
+- resolved repository path
+
+### Planned
+
 - description
 - primary language
 - repository age
@@ -270,11 +274,13 @@ Examples:
 
 The Pre-Collector remains role-neutral and evidence-focused.
 
-## Implemented Repository Discovery Contract
+# Implemented Contracts
+
+## Repository Discovery
 
 `portfolio-profiler discover ROOT` examines `ROOT` and its direct child directories. It recognizes `.git` as either a file or directory and returns deterministically ordered repository identities.
 
 Repository discovery uses filesystem markers only and may report paths that `profile` later rejects. Discovery is intentionally cheaper than Git validation.
 
-## Implemented Local Git Evidence Contract
+## Local Git Evidence
 `portfolio-profiler profile REPOSITORY` resolves the repository root and observes local Git state through one non-shell command adapter. It performs no fetch and does not modify the repository. Evidence models are immutable, factual, and explicitly serialized. Root commit identities are sorted, detached HEAD is represented by a null branch and `detachedHead: true`, and unchanged repository state produces identical JSON bytes.

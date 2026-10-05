@@ -5,7 +5,7 @@ class PortfolioProfilerError(Exception):
     """Base class for expected product failures."""
 
 
-class RepositoryInputError(PortfolioProfilerError):
+class RepositoryInputError(PortfolioProfilerError, ValueError):
     """The requested repository path is invalid."""
 
 

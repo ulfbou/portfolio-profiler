@@ -8,6 +8,14 @@ Its first implementation phase is the Pre-Collector, which gathers objective rep
 
 Implementation in progress. The current durable baseline is described in `docs/current-state.md`; planned delivery is described in `docs/roadmap.md`.
 
+## Goals
+
+- Discover repositories and portfolio assets.
+- Collect objective repository evidence.
+- Avoid subjective scoring during collection.
+- Produce structured evidence profiles.
+- Support future CV, portfolio, and interview-oriented analysis.
+
 ## Implemented commands
 
 ### Discover repositories
